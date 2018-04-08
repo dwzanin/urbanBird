@@ -1,0 +1,159 @@
+<div class="container">
+
+
+<div class="ordem-compra" *ngIf="idPedidoCompra === undefined">
+  <div *ngIf="carrinhoService.exibirItens().length; else carrinhoVazio">
+
+   
+
+      <form [formGroup]="formulario" (ngSubmit)="confirmarCompra()" novalidate>
+          <h5>Sua Compra</h5>
+          <hr />
+        
+          <div *ngFor="let item of itensCarrinho" 
+              class="form-row"
+              style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
+
+            <div class="form-group col-sm-1">
+              <img [src]="item.img.url" class="img-fluid">
+            </div>
+            
+            <div class="form-group col-sm-5">
+              {{ item.titulo }}
+              <br />
+              {{ item.descricao_oferta }}
+            </div>
+
+            <div class="row col-sm-3">
+              <div class="col">
+                <button type="button"
+                        class="btn btn-link"
+                        (click)="alterarQuantidade(item, 1)">-</button>
+                {{ item.quantidade }}
+                <button type="button"
+                        class="btn btn-link"
+                        (click)="alterarQuantidade(item, 0)">+</button>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-1">
+                <button type="button"
+                              class="btn btn-link"
+                              (click)="alterarQuantidade(item, 2)">Remover</button>
+            </div>
+
+            <div class="form-group col-sm-2 d-flex justify-content-end" style="padding-top: 8px">
+              {{ item.valor * item.quantidade | currency: 'BRL' }}
+            </div>
+
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group col d-flex justify-content-end">
+              <h4>Total do pedido: {{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</h4>
+            </div>
+          </div>
+          <br />
+
+        <h5>Dados de entrega</h5>
+        <hr />
+
+        <div class="form-row">
+
+          <div class="form-group col-md-6">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Endereço" 
+              autocomplete="off" 
+              formControlName="endereco"
+            >
+
+            <small *ngIf="formulario.get('endereco').valid  && formulario.get('endereco').touched" class="form-text text-success" >
+              Ok
+            </small>
+            <small *ngIf="formulario.get('endereco').invalid  && formulario.get('endereco').touched" class="form-text text-danger" >
+              Enderceço Inválido
+            </small>
+
+          </div>
+
+          <div class="form-group col-md-2">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Número" 
+              autocomplete="off"
+              formControlName="numero"
+            >
+
+            <small *ngIf="formulario.get('numero').valid  && formulario.get('numero').touched" class="form-text text-success" >
+                Ok
+            </small>
+            <small *ngIf="formulario.get('numero').invalid  && formulario.get('numero').touched" class="form-text text-danger" >
+                Número Inválido
+            </small>
+
+          </div>
+
+          <div class="form-group col-md-4">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Complemento" 
+              autocomplete="off"
+              formControlName="complemento"
+            >
+          </div>
+
+        </div>
+
+        <br />
+
+        <h5>Dados de pagamento</h5>
+        <hr />
+
+        <div class="form-row">
+            
+          <div class="form-group col-md-3">
+            <select 
+              class="form-control"
+              formControlName="formaPagamento"
+            >
+              <option value="">Selecione uma opção</option>
+              <option value="dinheiro">Dinheiro</option>
+              <option value="debito">Débito</option>
+            </select>
+            <small *ngIf="formulario.get('formaPagamento').valid  && formulario.get('formaPagamento').touched" class="form-text text-success" >
+                Ok
+            </small>
+            <small *ngIf="formulario.get('formaPagamento').invalid  && formulario.get('formaPagamento').touched" class="form-text text-danger" >
+                Forma de Pagamento Inválida
+            </small>
+          </div>
+        </div>
+
+        <hr />
+        <button 
+          type="submit" 
+          class="btn btn-primary btn-lg"
+          [disabled]="formulario.valid ? '' : 'disabled'"
+        >Cofirmar compra</button>
+      </form>
+
+    </div>
+    
+    <ng-template #carrinhoVazio>
+        <div class="secao">
+            <h3 class="text-center">Seu carrinho está vazio.</h3>
+            <h5 class="text-center">Não perca tempo, aproveite as ofertas!</h5>
+        </div>
+    </ng-template>
+
+  </div>
+  
+  <div class="ordem-compra" *ngIf="idPedidoCompra !== undefined">
+    <app-ordem-compra-sucesso [idPedidoCompra]="idPedidoCompra"></app-ordem-compra-sucesso>
+  </div>
+
+</div>
