@@ -1,10 +1,7 @@
 <div class="container">
 
-
 <div class="ordem-compra" *ngIf="idPedidoCompra === undefined">
   <div *ngIf="carrinhoService.exibirItens().length; else carrinhoVazio">
-
-   
 
       <form [formGroup]="formulario" (ngSubmit)="confirmarCompra()" novalidate>
           <h5>Sua Compra</h5>

@@ -9,7 +9,6 @@ import 'rxjs/add/operator/toPromise'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/retry'
 
-
 @Injectable()
 export class OfertasService {
 
@@ -18,6 +17,7 @@ export class OfertasService {
     public getOfertas(): Promise<Oferta[]>{
         //efetuar uma requisicao http
         return this.http.get(`${URL_API}/ofertas?destaque=true`)
+                    .retry(10)
                     .toPromise()  //retornar um promise Oferta []
                     .then((resposta: Response) => resposta.json())   
     }

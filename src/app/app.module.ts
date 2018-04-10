@@ -28,6 +28,11 @@ import { registerLocaleData } from '@angular/common';
 import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
 import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra-sucesso.component';
 
+//animate
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material';
+
+
 registerLocaleData(localePt);
 
 @NgModule({
@@ -47,9 +52,11 @@ registerLocaleData(localePt);
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     //FormsModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [ CarrinhoService,
