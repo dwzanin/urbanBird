@@ -1,8 +1,8 @@
 <div class="container">
 
   <div class="secao">
-    <h3 class="text-center">Destaques do dia!</h3>
-    <h5 class="text-center">Aproveite as super ofertas que separamos para você:</h5>
+    <h3 class="text-center">Deals of the day!</h3>
+    <h5 class="text-center">Enjoy the deals that we chosen for you:</h5>
   </div>
 
   <hr/>
@@ -15,7 +15,7 @@
           <h4 class="card-title">{{ oferta.titulo }}</h4>
           <p class="card-text">{{ oferta.descricao_oferta }}</p>
           <p class="preco"> {{ oferta.valor | currency:'BRL' }}</p>
-          <a [routerLink]="['/oferta', oferta.id]" class="btn btn-outline-primary">Ver oferta</a>
+          <a [routerLink]="['/oferta', oferta.id]" class="btn btn-outline-primary">View</a>
         </div>
       </div>
     </div>
@@ -24,4 +24,3 @@
   <hr/>
   
 </div>
-

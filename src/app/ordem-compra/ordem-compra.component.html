@@ -4,7 +4,7 @@
   <div *ngIf="carrinhoService.exibirItens().length; else carrinhoVazio">
 
       <form [formGroup]="formulario" (ngSubmit)="confirmarCompra()" novalidate>
-          <h5>Sua Compra</h5>
+          <h5>Your Cart</h5>
           <hr />
         
           <div *ngFor="let item of itensCarrinho" 
@@ -36,23 +36,23 @@
             <div class="form-group col-sm-1">
                 <button type="button"
                               class="btn btn-link"
-                              (click)="alterarQuantidade(item, 2)">Remover</button>
+                              (click)="alterarQuantidade(item, 2)">Remove</button>
             </div>
 
             <div class="form-group col-sm-2 d-flex justify-content-end" style="padding-top: 8px">
-              {{ item.valor * item.quantidade | currency: 'BRL' }}
+              {{ item.valor * item.quantidade | currency: 'US' }}
             </div>
 
           </div>
           
           <div class="form-row">
             <div class="form-group col d-flex justify-content-end">
-              <h4>Total do pedido: {{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</h4>
+              <h4>Product Total: {{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</h4>
             </div>
           </div>
           <br />
 
-        <h5>Dados de entrega</h5>
+        <h5>Shipping information</h5>
         <hr />
 
         <div class="form-row">
@@ -61,7 +61,7 @@
             <input 
               type="text" 
               class="form-control" 
-              placeholder="Endereço" 
+              placeholder="Adress" 
               autocomplete="off" 
               formControlName="endereco"
             >
@@ -70,7 +70,7 @@
               Ok
             </small>
             <small *ngIf="formulario.get('endereco').invalid  && formulario.get('endereco').touched" class="form-text text-danger" >
-              Enderceço Inválido
+              Invalid Adress
             </small>
 
           </div>
@@ -79,7 +79,7 @@
             <input 
               type="text" 
               class="form-control" 
-              placeholder="Número" 
+              placeholder="Number" 
               autocomplete="off"
               formControlName="numero"
             >
@@ -88,7 +88,7 @@
                 Ok
             </small>
             <small *ngIf="formulario.get('numero').invalid  && formulario.get('numero').touched" class="form-text text-danger" >
-                Número Inválido
+                Invalid number
             </small>
 
           </div>
@@ -97,7 +97,7 @@
             <input 
               type="text" 
               class="form-control" 
-              placeholder="Complemento" 
+              placeholder="Complement" 
               autocomplete="off"
               formControlName="complemento"
             >
@@ -107,7 +107,7 @@
 
         <br />
 
-        <h5>Dados de pagamento</h5>
+        <h5>Payment Method</h5>
         <hr />
 
         <div class="form-row">
@@ -117,15 +117,15 @@
               class="form-control"
               formControlName="formaPagamento"
             >
-              <option value="">Selecione uma opção</option>
-              <option value="dinheiro">Dinheiro</option>
-              <option value="debito">Débito</option>
+              <option value="">Select a option</option>
+              <option value="dinheiro">Pay With Cash</option>
+              <option value="debito">Debit</option>
             </select>
             <small *ngIf="formulario.get('formaPagamento').valid  && formulario.get('formaPagamento').touched" class="form-text text-success" >
                 Ok
             </small>
             <small *ngIf="formulario.get('formaPagamento').invalid  && formulario.get('formaPagamento').touched" class="form-text text-danger" >
-                Forma de Pagamento Inválida
+                Invalid Payment Method
             </small>
           </div>
         </div>
@@ -135,15 +135,15 @@
           type="submit" 
           class="btn btn-primary btn-lg"
           [disabled]="formulario.valid ? '' : 'disabled'"
-        >Cofirmar compra</button>
+        >Checkout</button>
       </form>
 
     </div>
     
     <ng-template #carrinhoVazio>
         <div class="secao">
-            <h3 class="text-center">Seu carrinho está vazio.</h3>
-            <h5 class="text-center">Não perca tempo, aproveite as ofertas!</h5>
+            <h3 class="text-center">Your cart is empty.</h3>
+            <h5 class="text-center">Don't lose your time, enjoy the deals!</h5>
         </div>
     </ng-template>
 
