@@ -8,3 +8,7 @@ img {
     padding-left: 25px;
     padding-right: 25px;
 }
+
+.btn-outline-success {
+    width: 140px;
+}
