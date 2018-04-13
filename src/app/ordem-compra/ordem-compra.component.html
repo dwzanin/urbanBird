@@ -40,14 +40,14 @@
             </div>
 
             <div class="form-group col-sm-2 d-flex justify-content-end" style="padding-top: 8px">
-              {{ item.valor * item.quantidade | currency: 'US' }}
+              {{ item.valor * item.quantidade | currency }}
             </div>
 
           </div>
           
           <div class="form-row">
             <div class="form-group col d-flex justify-content-end">
-              <h4>Product Total: {{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</h4>
+              <h4>Product Total: {{ carrinhoService.totalCarrinhoCompras() | currency }}</h4>
             </div>
           </div>
           <br />
